@@ -1,0 +1,1 @@
+function whoisonline_1(k){var k=k;document.write('<a href="http://www.sitereport.org/stats/'+k+'"><img src="http://www.sitereport.org/whoisonline.php?k='+k+'" width="80" height="15" border="0" title="Real-time stats by SiteReport.org" /></a>')};

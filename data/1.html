@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+	
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Notas Canaima</title>
+		<link rel="shortcut icon" href="http://pastebin.com/favicon.ico">
+		<meta name="robots" content="noarchive">
+		<link href="http://localhost/data/1_archivos/style.css" rel="stylesheet" type="text/css">
+				<script type="text/javascript" src="http://localhost/data/1_archivos/basic.js"></script>
+		<!--[if lte IE 6]>
+			<link href="/i/ie6.css" media="screen" rel="Stylesheet" type="text/css" />
+		<![endif]-->
+	</head><body>
+
+<!--[if lte IE 6]>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td>
+<![endif]-->
+		<div id="container">
+			<div id="header">
+				<div id="header_logo" title="Hacer nueva nota!" onclick="location.href=''"></div>
+				<div id="header_frame">
+					<div id="hf1"><a href="http://notas.canaima.softwarelibre.gob.ve/">Notas!</a></div>
+					<div id="hf2">Compartiendo información</div>
+				</div>				
+				<div id="header_menu">
+					<ul id="nav">
+						<li class="active"><a href=".">Nueva Nota</a></li>
+						<li><a href="archivo">Archivo</a></li>
+						<li><a href="ayuda">Ayuda</a></li>
+					</ul>
+				</div>
+				<div id="header_search">
+					<form class="search_form" name="search_form" method="get" action="/buscar" id="busqueda">
+						<input name="ie" value="UTF-8" type="hidden">
+						<input class="search_input" name="q" size="5" value="buscar..." onfocus="this.value=''" type="text"><input class="search_button" src="http://localhost/data/1_archivos/dot.gif" alt="Search..." value="Search" name="sa" type="image">
+					</form>
+				</div>
+			</div>
+			<div id="content_frame">
+				<div id="content_left">
+				
+		<div class="content_left_title">Notas Recientes</div>
+		<div class="content_left_box">
+
+{% for nota in notas_recientes %}
+                        <div class="clb_top"><a href="ver/{{ nota.id }}">{{ nota.titulo }}</a></div>
+                        <div class="clb_bottom"><span>{{ nota.autor }}</span> </div>
+{% endfor %}
+
+				</div>
+
+
+		<div class="content_left_title">Que es esto?</div>
+		<div class="content_left_box">
+			Esta plataforma de notas, te permite compartir públicamente notas o textos para cualquier propósito.<br><a href="ayuda" class="arrow">aprender más</a>
+		</div>
+
+	</div>
+	<div id="content_right">
+			
+		<div class="notice">
+			<span class="content_box_left">{% if exito %} EXITO insertando informacion {%endif%}  Aprenda un poco más sobre este nuevo sistema de notas en la <a href="ayuda">ayuda</a>.</span>
+			<span class="content_box_right"><a href="http://porhacer">ocultar</a></span>
+		</div>
+		<div class="content_box"><b>Llene el siguiente cuadro de texto, titulo y su nombre para crear una nota nueva.</b></div>
+		<form class="paste_form" name="paste_form" method="post" action="/enviar/">
+			<textarea cols="5" value="Seleccione este espacio con el ratón y presione Ctrl+V" rows="7" name="codigo_form" onkeydown="return catchTab(this,event)" class="paste_textarea"></textarea>
+			<div class="form_frame">
+				<div class="form_left">
+					Título:
+				</div>
+				<div class="form_right">
+					<input name="titulo_form" size="20" value="" class="post_input" type="text"> 
+				</div>
+			</div>
+			<div class="form_frame">
+				<div class="form_left">
+					Nombre:
+				</div>
+				<div class="form_right">
+					<input name="nombre_form" size="20" value="Anónimo" class="post_input" type="text"> 
+				</div>
+			</div>
+
+			<input class="paste_submit"  alt="submit" value="Enviar" name="submit" type="submit">						
+		</form>	
+		<!--[if lte IE 6]>
+			</td>
+		</tr>
+        <tr>
+            <td>
+                <img src="/i/dot.gif" width="900" height="1" alt="" />
+            <td>
+        </tr>
+		</table>
+<![endif]-->
+
+
+	</body></html>
