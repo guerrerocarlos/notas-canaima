@@ -16,7 +16,11 @@ urlpatterns = patterns('',
     # to INSTALLED_APPS to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    (r'^bienvenido/', bienvenido),
+    (r'^1_archivos/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/templates/1_archivos'}),
+
     # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
+    (r'^enviar2', enviar2),
+    (r'^enviar/(.*)', enviar),
+    (r'^', bienvenido),
 )
