@@ -1,5 +1,8 @@
 # Create your views here.
 from django.shortcuts import render_to_response
+
+from django.http import Http404, HttpResponseRedirect
+
 from canaima.notas.models import *
 from django.http import HttpResponse
 
@@ -20,7 +23,7 @@ def enviar(request,url):
 	a1.save()
         p1 = Nota(nota=codigo_form,titulo=titulo_form,autor=a1)
 	p1.save()
-        return render_to_response('1.html',{'exito': True,'notas_recientes': notas_recientes})
+	return HttpResponseRedirect('/')
     return render_to_response('1.html',{'errors': errors})
     
 
