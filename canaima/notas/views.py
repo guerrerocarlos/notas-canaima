@@ -27,6 +27,14 @@ def enviar(request,url):
     return render_to_response('1.html',{'errors': errors})
     
 
+def ver(request,num):
+
+    notas_recientes = Nota.objects.order_by('-fecha')[0:7]
+    aver=Nota.objects.get(id=num)
+    lineas=aver.nota.split("\n")
+    return render_to_response('1.html',{'ver': aver,'ver2':lineas,'nim':num,'notas_recientes': notas_recientes})
+
+
 def enviar2(request):
     errors = []
     if 'codigo_form' in request.POST:

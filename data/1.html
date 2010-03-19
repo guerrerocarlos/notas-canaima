@@ -1,6 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
-	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Notas Canaima</title>
 		<link rel="shortcut icon" href="http://pastebin.com/favicon.ico">
@@ -19,7 +18,7 @@
 <![endif]-->
 		<div id="container">
 			<div id="header">
-				<div id="header_logo" title="Hacer nueva nota!" onclick="location.href=''"></div>
+				<div id="header_logo" title="Hacer nueva nota!" onclick="location.href='{{parent_url}}'"></div>
 				<div id="header_frame">
 					<div id="hf1"><a href="http://notas.canaima.softwarelibre.gob.ve/">Notas!</a></div>
 					<div id="hf2">Compartiendo información</div>
@@ -43,9 +42,8 @@
 				
 		<div class="content_left_title">Notas Recientes</div>
 		<div class="content_left_box">
-
 {% for nota in notas_recientes %}
-                        <div class="clb_top"><a href="ver/{{ nota.id }}">{{ nota.titulo }}</a></div>
+                        <div class="clb_top"><a href="{{ nota.id }}">{{ nota.titulo }}</a></div>
                         <div class="clb_bottom"><span>{{ nota.autor }}</span> </div>
 {% endfor %}
 
@@ -64,6 +62,7 @@
 			<span class="content_box_left">{% if exito %} EXITO insertando informacion {%endif%}  Aprenda un poco más sobre este nuevo sistema de notas en la <a href="ayuda">ayuda</a>.</span>
 			<span class="content_box_right"><a href="http://porhacer">ocultar</a></span>
 		</div>
+{%if not ver %}
 		<div class="content_box"><b>Llene el siguiente cuadro de texto, titulo y su nombre para crear una nota nueva.</b></div>
 		<form class="paste_form" name="paste_form" method="post" action="/enviar/">
 			<textarea cols="5" value="Seleccione este espacio con el ratón y presione Ctrl+V" rows="7" name="codigo_form" onkeydown="return catchTab(this,event)" class="paste_textarea"></textarea>
@@ -86,6 +85,18 @@
 
 			<input class="paste_submit"  alt="submit" value="Enviar" name="submit" type="submit">						
 		</form>	
+
+{% endif %}
+{% if ver2 %}
+	{% for item in ver2 %}
+	<br>
+			{{ item }}
+	</br>
+	{%endfor%}
+
+{% endif%}
+
+
 		<!--[if lte IE 6]>
 			</td>
 		</tr>

@@ -11,7 +11,7 @@ a:hover{color:#999;text-decoration:none;}
 #hf2{line-height:8px;font-size:0.7em;color:#fff;}
 #hf1 a {
 	text-decoration: none;
-	color:#00b315;
+	color:#0a5505;
 }
 #hf1 a:hover {
 	text-decoration: none;
@@ -19,8 +19,8 @@ a:hover{color:#999;text-decoration:none;}
 }
 div#container{min-width:900px;}
 div#header_frame{border-right:1px solid #583d09;padding-right:10px;}
-div#header{height:46px;background:#6b511a url(/i/menu_top.jpg);border-bottom:1px solid #000;}
-div#header_logo{width:42px;float:left;height:45px;background:url(/i/sprite_png_v3.png) no-repeat 0 -476px;cursor:pointer;}
+div#header{height:46px;background:#7a580b url(http://localhost/data/1_archivos/menu_top.jpg);border-bottom:1px solid #000;}
+div#header_logo{width:42px;float:left;height:45px;background:url(http://localhost/data/1_archivos/logo.png) no-repeat ;cursor:pointer;}
 div#header_menu{float:left;border-right:1px solid #877745;}
 div#header_firefox{width:30px;height:46px;cursor:pointer;margin:0 0 0 10px;background:url(/i/sprite_png_v3.png) no-repeat -31px -425px;float:left;}
 div#header_chrome{width:30px;height:46px;cursor:pointer;margin:0 0 0 10px;background:url(/i/sprite_png_v3.png) no-repeat -62px -425px;float:left;}

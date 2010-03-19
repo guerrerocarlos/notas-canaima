@@ -1,4 +1,4 @@
-# Django settings for canaima project.
+# Django settings for dpastte project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -10,7 +10,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'plataforma'             # Or path to database file if using sqlite3.
+DATABASE_NAME = 'ddd'             # Or path to database file if using sqlite3.
 DATABASE_USER = ''             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
@@ -48,7 +48,7 @@ MEDIA_URL = ''
 ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '$@uasq&s04oj)4)3%wp^z90s7i46)kqp7(-g=4)+zppaqm9n!^'
+SECRET_KEY = '_t81slua4o#-dgb)53_at77(1nmjeaw#_h_1bv!^wz008gt7hz'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -63,13 +63,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
-ROOT_URLCONF = 'canaima.urls'
+ROOT_URLCONF = 'dpastte.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "/home/carlos/django/aprendiendo-django/data",
+    "/usr/lib/python2.5/site-packages/dpaste/templates/"
 )
 
 INSTALLED_APPS = (
@@ -77,6 +77,5 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'django.contrib.admin',
-    'canaima.notas',
+    'dpaste',
 )
