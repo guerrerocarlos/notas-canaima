@@ -1,4 +1,6 @@
 # Create your views here.
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render_to_response
 
 from django.http import Http404, HttpResponseRedirect
@@ -8,27 +10,44 @@ from django.http import HttpResponse
 
 
 
-def bienvenido(request):
-    notas_recientes = Nota.objects.order_by('-fecha')[0:7]
-    return render_to_response('1.html',{'notas_recientes': notas_recientes})
 
-def enviar(request,url):
+
+
+def bienvenido(request):
+    if "mostrar" in request.COOKIES:
+	salida = request.COOKIES["mostrar"]
+	if salida == "no":
+		mostrar_ayuda=False
+	else:
+		mostrar_ayuda=True
+    else:
+	mostrar_ayuda=True
+    notas_recientes = Nota.objects.order_by('-fecha')[0:7]
+    return render_to_response('1.html',{'notas_recientes': notas_recientes,'nueva':True, 'mayuda':mostrar_ayuda})
+
+def enviar(request):
     errors = []
     notas_recientes = Nota.objects.order_by('-fecha')[0:7]
     if 'codigo_form' in request.POST:
         codigo_form = request.POST['codigo_form']
         titulo_form = request.POST['titulo_form']
         autor_form = request.POST['nombre_form']
-	a1=Autor(name=autor_form)
+	if ( autor_form!="") :
+		a1=Autor(name=autor_form)
+	else :
+		a1=Autor(name="Anónimo")
 	a1.save()
-        p1 = Nota(nota=codigo_form,titulo=titulo_form,autor=a1)
+
+	if ( titulo_form==""):
+        	p1 = Nota(nota=codigo_form,titulo="Sin Título",autor=a1)
+	else:
+        	p1 = Nota(nota=codigo_form,titulo=titulo_form,autor=a1)
 	p1.save()
 	return HttpResponseRedirect('/')
     return render_to_response('1.html',{'errors': errors})
     
 
-def ver(request,num):
-
+def ver(request,num ):
     notas_recientes = Nota.objects.order_by('-fecha')[0:7]
     aver=Nota.objects.get(id=num)
     lineas=aver.nota.split("\n")

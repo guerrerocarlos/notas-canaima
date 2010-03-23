@@ -4,13 +4,30 @@
 		<title>Notas Canaima</title>
 		<link rel="shortcut icon" href="http://pastebin.com/favicon.ico">
 		<meta name="robots" content="noarchive">
+
+		<script src="data/javascripts/prototype.js" type="text/javascript"></script>
+		<script src="data/javascripts/scriptaculous.js" type="text/javascript"></script>
+
+
 		<link href="http://localhost/data/1_archivos/style.css" rel="stylesheet" type="text/css">
 				<script type="text/javascript" src="http://localhost/data/1_archivos/basic.js"></script>
 		<!--[if lte IE 6]>
 			<link href="/i/ie6.css" media="screen" rel="Stylesheet" type="text/css" />
 		<![endif]-->
-	</head><body>
 
+<script language="JavaScript">
+/* This function sets the cookie */
+function iLoveCookies(){
+days=30; // number of days to keep the cookie
+myDate = new Date();
+myDate.setTime(myDate.getTime()+(days*24*60*60*1000));
+document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
+}
+/* end of cookie function */
+</script>
+   
+	
+	</head><body>
 <!--[if lte IE 6]>
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
@@ -21,11 +38,11 @@
 				<div id="header_logo" title="Hacer nueva nota!" onclick="location.href='{{parent_url}}'"></div>
 				<div id="header_frame">
 					<div id="hf1"><a href="http://notas.canaima.softwarelibre.gob.ve/">Notas!</a></div>
-					<div id="hf2">Compartiendo información</div>
+					<div id="hf2">Compartiendo información {{mayuda}} </div>
 				</div>				
 				<div id="header_menu">
 					<ul id="nav">
-						<li class="active"><a href=".">Nueva Nota</a></li>
+						<li {%if nueva %} class="active">{% endif %}<a href=".">Nueva Nota</a></li>
 						<li><a href="archivo">Archivo</a></li>
 						<li><a href="ayuda">Ayuda</a></li>
 					</ul>
@@ -57,14 +74,15 @@
 
 	</div>
 	<div id="content_right">
-			
-		<div class="notice">
+		{%if mayuda %}	
+		<div class="notice" id="notice">
 			<span class="content_box_left">{% if exito %} EXITO insertando informacion {%endif%}  Aprenda un poco más sobre este nuevo sistema de notas en la <a href="ayuda">ayuda</a>.</span>
-			<span class="content_box_right"><a href="http://porhacer">ocultar</a></span>
-		</div>
+			<span id="ocultarr" class="content_box_right"><a href="#" onclick="Effect.BlindUp('notice'); iLoveCookies(); return false;">ocultar</a></span>
+		</div> {% endif%}
+
 {%if not ver %}
 		<div class="content_box"><b>Llene el siguiente cuadro de texto, titulo y su nombre para crear una nota nueva.</b></div>
-		<form class="paste_form" name="paste_form" method="post" action="/enviar/">
+		<form class="paste_form" name="paste_form" method="post" action="/enviar">
 			<textarea cols="5" value="Seleccione este espacio con el ratón y presione Ctrl+V" rows="7" name="codigo_form" onkeydown="return catchTab(this,event)" class="paste_textarea"></textarea>
 			<div class="form_frame">
 				<div class="form_left">
@@ -86,15 +104,21 @@
 			<input class="paste_submit"  alt="submit" value="Enviar" name="submit" type="submit">						
 		</form>	
 
-{% endif %}
-{% if ver2 %}
-	{% for item in ver2 %}
-	<br>
-			{{ item }}
-	</br>
-	{%endfor%}
+{% endif %} 	
 
+{% if ver2 %}
+		<div class="notice2">
+			<span class="content_box_left2">{{ver.titulo}}</span>
+			<span class="content_box_right">Publicado por: {{ver.autor}}</span>
+		</div>
+
+
+	{% for item in ver2 %}
+		<div class="{% cycle 'lineapar' 'lineaimpar' %}" title="Linea {{forloop.counter}}"> {{item}}</div>
+	{%endfor%}
 {% endif%}
+
+
 
 
 		<!--[if lte IE 6]>

@@ -17,12 +17,13 @@ urlpatterns = patterns('',
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     (r'^1_archivos/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/var/www/data/1_archivos'}),
+    (r'^data/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/var/www/data/'}),
 
     # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
     (r'^ver/(?P<num>.*)$', ver),
-    (r'^(?P<num>.*)$', ver),
+    (r'([0-9^/]+)', ver),
     (r'^enviar2', enviar2),
-    (r'^enviar/(.*)', enviar),
+    (r'^enviar', enviar),
     (r'^', bienvenido),
 )
