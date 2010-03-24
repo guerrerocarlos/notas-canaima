@@ -38,7 +38,7 @@ document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
 				<div id="header_logo" title="Hacer nueva nota!" onclick="location.href='{{parent_url}}'"></div>
 				<div id="header_frame">
 					<div id="hf1"><a href="http://notas.canaima.softwarelibre.gob.ve/">Notas!</a></div>
-					<div id="hf2">Compartiendo información {{mayuda}} </div>
+					<div id="hf2">Compartiendo información </div>
 				</div>				
 				<div id="header_menu">
 					<ul id="nav">
@@ -56,16 +56,18 @@ document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
 			</div>
 			<div id="content_frame">
 				<div id="content_left">
+
 				
+{% if not todas %}
 		<div class="content_left_title">Notas Recientes</div>
 		<div class="content_left_box">
 {% for nota in notas_recientes %}
                         <div class="clb_top"><a href="{{ nota.id }}">{{ nota.titulo }}</a></div>
                         <div class="clb_bottom"><span>{{ nota.autor }}</span> </div>
 {% endfor %}
-
 				</div>
 
+{% endif %}
 
 		<div class="content_left_title">Que es esto?</div>
 		<div class="content_left_box">
@@ -73,7 +75,23 @@ document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
 		</div>
 
 	</div>
+
 	<div id="content_right">
+
+{%for nota in todas %}
+                        <div class="clbc_top"><a href="{{ nota.id }}">{{ nota.titulo }}</a></div>
+                        <div class="clbc_bottom"><span>{{ nota.autor }}</span> </div>
+                        <div class="clbc_bottom"><span>{{ nota.fecha|timesince }}</span> </div>
+			{{nota.nota|linebreaks|truncatewords:12}}
+
+{%endfor%}
+
+
+
+
+
+
+
 		{%if mayuda %}	
 		<div class="notice" id="notice">
 			<span class="content_box_left">{% if exito %} EXITO insertando informacion {%endif%}  Aprenda un poco más sobre este nuevo sistema de notas en la <a href="ayuda">ayuda</a>.</span>
@@ -81,6 +99,7 @@ document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
 		</div> {% endif%}
 
 {%if not ver %}
+	{% if not todas %}
 		<div class="content_box"><b>Llene el siguiente cuadro de texto, titulo y su nombre para crear una nota nueva.</b></div>
 		<form class="paste_form" name="paste_form" method="post" action="/enviar">
 			<textarea cols="5" value="Seleccione este espacio con el ratón y presione Ctrl+V" rows="7" name="codigo_form" onkeydown="return catchTab(this,event)" class="paste_textarea"></textarea>
@@ -105,6 +124,7 @@ document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
 		</form>	
 
 {% endif %} 	
+{% endif %} 	
 
 {% if ver2 %}
 		<div class="notice2">
@@ -113,7 +133,7 @@ document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
 		</div>
 
 
-	{% for item in ver2 %}
+	{%for item in ver2 %}
 		<div class="{% cycle 'lineapar' 'lineaimpar' %}" title="Linea {{forloop.counter}}"> {{item}}</div>
 	{%endfor%}
 {% endif%}

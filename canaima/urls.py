@@ -25,5 +25,6 @@ urlpatterns = patterns('',
     (r'([0-9^/]+)', ver),
     (r'^enviar2', enviar2),
     (r'^enviar', enviar),
+    (r'^archivo', mostrar_archivo),
     (r'^', bienvenido),
 )

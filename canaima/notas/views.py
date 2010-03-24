@@ -53,6 +53,11 @@ def ver(request,num ):
     lineas=aver.nota.split("\n")
     return render_to_response('1.html',{'ver': aver,'ver2':lineas,'nim':num,'notas_recientes': notas_recientes})
 
+def mostrar_archivo(request):
+    todas_notas = Nota.objects.order_by('-fecha')
+    return render_to_response('1.html',{'todas': todas_notas})
+
+
 
 def enviar2(request):
     errors = []

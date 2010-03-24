@@ -7,11 +7,11 @@ a:hover{color:#999;text-decoration:none;}
 #adblock{padding:0 0 10px 0;}
 #adblock2{padding:0 0 10px 0;width:100%;}
 #adblock3{display:block;height:70px}
-#hf1{line-height:32px;font-size:1.3em;padding:0;text-transform:uppercase;font-weight:bold;color:#00b315;}
+#hf1{line-height:32px;font-size:1.3em;padding:0;text-transform:uppercase;font-weight:bold;color:#fff;}
 #hf2{line-height:8px;font-size:0.7em;color:#fff;}
 #hf1 a {
 	text-decoration: none;
-	color:#0a5505;
+	color:#eee;
 }
 #hf1 a:hover {
 	text-decoration: none;
@@ -28,7 +28,7 @@ div#header_twitter{width:30px;height:46px;cursor:pointer;margin:0 0 0 10px;backg
 ul#nav{list-style-type:none;margin:0;padding:0;}
 #nav li{font-size:0.9em;float:left;}
 .code_box{padding:7px;margin:10px;background-color:#FFFFEF;border:1px dotted #DDDDAA;}
-#nav li a{height:30px;display:block;float:left;color:#ddd;padding:10px 18px 6px 18px;border-right:1px solid #4c3d1e;border-left:1px solid #4c3d1e;}
+#nav li a{height:30px;display:block;float:left;color:#ddd;padding:10px 18px 6px 18px;border-right:1px solid #fff;border-left:1px solid #fff;}
 #nav li a:hover{color:#00b315;}
 #nav li.active a{font-weight:bold;color:white;text-decoration:none;}
 div#content_frame{overflow:hidden;height:100%;clear:both;}
@@ -43,6 +43,9 @@ div#content_left{width:160px;float:left;padding:10px 10px;}
 .content_left_box{width:150px;padding:0 5px;margin-bottom:10px;background-color:#fff;font-size:0.75em;}
 .clb_top{height:16px;line-height:16px;padding:4px 0 0 0;width:150px;overflow:hidden;}
 .clb_bottom{height:16px;color:#999;line-height:16px;padding:0 0 4px 0;width:150px;overflow:hidden;border-bottom:1px dotted #ccc;}
+.clbc_top{height:16px;line-height:16px;padding:15px 10px 0px 10px;overflow:hidden;}
+.clbc_bottom{height:16px;color:#999;line-height:16px;padding:0 10px 4px 0;overflow:hidden;border-bottom:1px dotted #ccc;}
+
 .clb_bottom span {
 	color: #000;
 }
