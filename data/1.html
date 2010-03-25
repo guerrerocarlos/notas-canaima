@@ -49,8 +49,7 @@ document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
 				</div>
 				<div id="header_search">
 					<form class="search_form" name="search_form" method="get" action="/buscar" id="busqueda">
-						<input name="ie" value="UTF-8" type="hidden">
-						<input class="search_input" name="q" size="5" value="buscar..." onfocus="this.value=''" type="text"><input class="search_button" src="/data/1_archivos/dot.gif" alt="Search..." value="Search" name="sa" type="image">
+						<input class="search_input" name="q" size="5" value="buscar..." onfocus="this.value=''" type="text"><input class="search_button" src="/data/1_archivos/buscar.gif" alt="Buscar..." value="Search" name="sa" type="image">
 					</form>
 				</div>
 			</div>
@@ -70,6 +69,9 @@ document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
 
 {% endif %}
 
+
+
+
 		<div class="content_left_title">¿Que es esto?</div>
 		<div class="content_left_box">
 			Esta plataforma de notas, te permite compartir públicamente notas o textos para cualquier propósito.<br><a href="ayuda" class="arrow">aprender más</a>
@@ -86,6 +88,23 @@ document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
 	</div>
 {%endfor%}
 
+{%for nota in todas2%}
+
+	<div id="content_right">
+                        <div class="clbc_top"><a href="{{ nota.id }}">{{ nota.titulo }}</a></div>
+                        <div class="clbc_bottom"><span>por {{ nota.autor }}, hace {{ nota.fecha|timesince|trad }}</span> </div>
+			{{nota.nota|linebreaks|truncatewords:12}}
+	</div>
+{%endfor%}
+{%for nota in todas3%}
+	<div id="content_right">
+                        <div class="clbc_top"><a href="{{ nota.id }}">{{ nota.titulo }}</a></div>
+                        <div class="clbc_bottom"><span>por {{ nota.autor }}, hace {{ nota.fecha|timesince|trad }}</span> </div>
+			{{nota.nota|linebreaks|truncatewords:12}}
+	</div>
+{%endfor%}
+
+
 
 	<div id="content_right">
 
@@ -97,12 +116,13 @@ document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
 		</div> {% endif%}
 
 
-{% if exito %} Se ha creado una nueva nota, la dirección para visualizarla es: <a href="{{id}}">http://notas.canaima.softwarelibre.gob.ve/{{id}}</a> {%endif%}
+{% if exito %} Se ha creado una nueva nota, la dirección para visualizarla es: <a href="{{id}}">http://notas.canaima.softwarelibre.gob.ve/{{id}}</a>, puede darle esta dirección a cualquier persona para que tenga acceso a su nota. {%endif%}
+
+{%if busqueda and not todas1 and not todas2 and not todas3%} <div style="color:red" class="content_box"><b> Su Busqueda no arrojó ningun resultado. </b></div> {%endif%}
 
 
 {%if not ver %}
 {%if not exito%}
-	{% if not todas %}
 		{% if not ayuda %}
 
 		<div class="content_box"><b>Llene el siguiente cuadro de texto, titulo y su nombre para crear una nota nueva.</b></div>
@@ -128,7 +148,6 @@ document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
 			<input class="paste_submit"  alt="submit" value="Enviar" name="submit" type="submit">						
 		</form>	
 
-{% endif %} 	
 {% endif %} 	
 {% endif %} 	
 {% endif %} 	

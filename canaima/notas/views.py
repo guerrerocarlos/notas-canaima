@@ -10,7 +10,15 @@ from django.http import HttpResponse
 
 
 
+def buscar(request):
 
+    notas_recientes = Nota.objects.order_by('-fecha')[0:7]
+    if 'q' in request.GET:
+        busqueda = request.GET['q']
+	resultados = Nota.objects.filter(nota__contains=busqueda)
+	resultados3 = Nota.objects.filter(titulo__contains=busqueda)
+	resultados2 = Nota.objects.filter(autor__name__contains=busqueda)
+        return render_to_response('1.html',{'todas': resultados,'todas2': resultados2,'todas3':resultados3,'notas_recientes':notas_recientes,'busqueda':True})
 
 
 def bienvenido(request):
@@ -24,6 +32,29 @@ def bienvenido(request):
 	mostrar_ayuda=True
     notas_recientes = Nota.objects.order_by('-fecha')[0:7]
     return render_to_response('1.html',{'notas_recientes': notas_recientes,'nueva':True, 'mayuda':mostrar_ayuda})
+
+
+def enviar_consola(request):
+    errors = []
+    notas_recientes = Nota.objects.order_by('-fecha')[0:7]
+    if 'codigo_form' in request.POST:
+        codigo_form = request.POST['codigo_form']
+        titulo_form = request.POST['titulo_form']
+        autor_form = request.POST['nombre_form']
+	if ( autor_form!="") :
+		a1=Autor(name=autor_form)
+	else :
+		a1=Autor(name="Anónimo")
+	a1.save()
+
+	if ( titulo_form==""):
+        	p1 = Nota(nota=codigo_form,titulo="Sin Título",autor=a1)
+	else:
+        	p1 = Nota(nota=codigo_form,titulo=titulo_form,autor=a1)
+	p1.save()
+        return HttpResponse('La información sobre su equipo ha sido publicada en: http://notas.canaima.softwarelibre.gob.ve/'+str(p1.id))
+    return HttpResponse('Se ha producido un error')
+
 
 def enviar(request):
     errors = []
