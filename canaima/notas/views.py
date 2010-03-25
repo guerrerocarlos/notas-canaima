@@ -43,8 +43,8 @@ def enviar(request):
 	else:
         	p1 = Nota(nota=codigo_form,titulo=titulo_form,autor=a1)
 	p1.save()
-	return HttpResponseRedirect('/')
-    return render_to_response('1.html',{'errors': errors})
+    	return render_to_response('1.html',{'exito':True,'id':p1.id,'notas_recientes':notas_recientes})
+    return render_to_response('1.html',{'errors': errors,'exito':True,'notas_recientes':notas_recientes})
     
 
 def ver(request,num ):
@@ -56,6 +56,11 @@ def ver(request,num ):
 def mostrar_archivo(request):
     todas_notas = Nota.objects.order_by('-fecha')
     return render_to_response('1.html',{'todas': todas_notas})
+
+def mostrar_ayuda(request):
+
+    notas_recientes = Nota.objects.order_by('-fecha')[0:7]
+    return render_to_response('1.html',{'ayuda': True,'notas_recientes':notas_recientes})
 
 
 

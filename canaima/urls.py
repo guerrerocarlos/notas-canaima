@@ -21,10 +21,11 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
-    (r'^ver/(?P<num>.*)$', ver),
+#    (r'^ver/(?P<num>.*)$', ver),
     (r'([0-9^/]+)', ver),
     (r'^enviar2', enviar2),
     (r'^enviar', enviar),
     (r'^archivo', mostrar_archivo),
+    (r'^ayuda', mostrar_ayuda),
     (r'^', bienvenido),
 )

@@ -9,8 +9,8 @@
 		<script src="data/javascripts/scriptaculous.js" type="text/javascript"></script>
 
 
-		<link href="http://localhost/data/1_archivos/style.css" rel="stylesheet" type="text/css">
-				<script type="text/javascript" src="http://localhost/data/1_archivos/basic.js"></script>
+		<link href="/data/1_archivos/style.css" rel="stylesheet" type="text/css">
+				<script type="text/javascript" src="/data/1_archivos/basic.js"></script>
 		<!--[if lte IE 6]>
 			<link href="/i/ie6.css" media="screen" rel="Stylesheet" type="text/css" />
 		<![endif]-->
@@ -26,7 +26,7 @@ document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
 /* end of cookie function */
 </script>
    
-	
+{% load  %}	
 	</head><body>
 <!--[if lte IE 6]>
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -37,26 +37,26 @@ document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
 			<div id="header">
 				<div id="header_logo" title="Hacer nueva nota!" onclick="location.href='{{parent_url}}'"></div>
 				<div id="header_frame">
-					<div id="hf1"><a href="http://notas.canaima.softwarelibre.gob.ve/">Notas!</a></div>
+					<div id="hf1"><a href="/">Notas!</a></div>
 					<div id="hf2">Compartiendo información </div>
 				</div>				
 				<div id="header_menu">
 					<ul id="nav">
 						<li {%if nueva %} class="active">{% endif %}<a href=".">Nueva Nota</a></li>
-						<li><a href="archivo">Archivo</a></li>
-						<li><a href="ayuda">Ayuda</a></li>
+						<li {%if todas %} class="active">{% endif %}<a href="archivo">Archivo</a></li>
+						<li {%if ayuda %} class="active">{% endif %}<a href="ayuda">Ayuda</a></li>
 					</ul>
 				</div>
 				<div id="header_search">
 					<form class="search_form" name="search_form" method="get" action="/buscar" id="busqueda">
 						<input name="ie" value="UTF-8" type="hidden">
-						<input class="search_input" name="q" size="5" value="buscar..." onfocus="this.value=''" type="text"><input class="search_button" src="http://localhost/data/1_archivos/dot.gif" alt="Search..." value="Search" name="sa" type="image">
+						<input class="search_input" name="q" size="5" value="buscar..." onfocus="this.value=''" type="text"><input class="search_button" src="/data/1_archivos/dot.gif" alt="Search..." value="Search" name="sa" type="image">
 					</form>
 				</div>
 			</div>
 			<div id="content_frame">
 				<div id="content_left">
-
+{% load taggs%}
 				
 {% if not todas %}
 		<div class="content_left_title">Notas Recientes</div>
@@ -64,32 +64,30 @@ document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
 {% for nota in notas_recientes %}
                         <div class="clb_top"><a href="{{ nota.id }}">{{ nota.titulo }}</a></div>
                         <div class="clb_bottom"><span>{{ nota.autor }}</span> </div>
+                        <div class="clb2_bottom"><span>{{ nota.fecha|timesince|trad }}</span> </div>
 {% endfor %}
 				</div>
 
 {% endif %}
 
-		<div class="content_left_title">Que es esto?</div>
+		<div class="content_left_title">¿Que es esto?</div>
 		<div class="content_left_box">
 			Esta plataforma de notas, te permite compartir públicamente notas o textos para cualquier propósito.<br><a href="ayuda" class="arrow">aprender más</a>
 		</div>
 
 	</div>
 
-	<div id="content_right">
-
 {%for nota in todas %}
-                        <div class="clbc_top"><a href="{{ nota.id }}">{{ nota.titulo }}</a></div>
-                        <div class="clbc_bottom"><span>{{ nota.autor }}</span> </div>
-                        <div class="clbc_bottom"><span>{{ nota.fecha|timesince }}</span> </div>
-			{{nota.nota|linebreaks|truncatewords:12}}
 
+	<div id="content_right">
+                        <div class="clbc_top"><a href="{{ nota.id }}">{{ nota.titulo }}</a></div>
+                        <div class="clbc_bottom"><span>por {{ nota.autor }}, hace {{ nota.fecha|timesince|trad }}</span> </div>
+			{{nota.nota|linebreaks|truncatewords:12}}
+	</div>
 {%endfor%}
 
 
-
-
-
+	<div id="content_right">
 
 
 		{%if mayuda %}	
@@ -98,8 +96,15 @@ document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
 			<span id="ocultarr" class="content_box_right"><a href="#" onclick="Effect.BlindUp('notice'); iLoveCookies(); return false;">ocultar</a></span>
 		</div> {% endif%}
 
+
+{% if exito %} Se ha creado una nueva nota, la dirección para visualizarla es: <a href="{{id}}">http://notas.canaima.softwarelibre.gob.ve/{{id}}</a> {%endif%}
+
+
 {%if not ver %}
+{%if not exito%}
 	{% if not todas %}
+		{% if not ayuda %}
+
 		<div class="content_box"><b>Llene el siguiente cuadro de texto, titulo y su nombre para crear una nota nueva.</b></div>
 		<form class="paste_form" name="paste_form" method="post" action="/enviar">
 			<textarea cols="5" value="Seleccione este espacio con el ratón y presione Ctrl+V" rows="7" name="codigo_form" onkeydown="return catchTab(this,event)" class="paste_textarea"></textarea>
@@ -116,13 +121,15 @@ document.cookie = 'mostrar=no; expires=' + myDate.toGMTString();
 					Nombre:
 				</div>
 				<div class="form_right">
-					<input name="nombre_form" size="20" value="Anónimo" class="post_input" type="text"> 
+					<input name="nombre_form" size="20" value="" class="post_input" type="text"> 
 				</div>
 			</div>
 
 			<input class="paste_submit"  alt="submit" value="Enviar" name="submit" type="submit">						
 		</form>	
 
+{% endif %} 	
+{% endif %} 	
 {% endif %} 	
 {% endif %} 	
 
