@@ -15,7 +15,18 @@ info+="-\n"
 info+="----- Información sobre su tarjeta gráfica:\n\n"
 info+="-\n"
 info+=os.popen("glxinfo").read()
-
+info+="-\n"
+info+="----- Información sobre su memoria RAM (en MB):\n\n"
+info+="-\n"
+info+=os.popen("free -m").read()
+info+="-\n"
+info+="----- Información sobre su espacio libre :\n\n"
+info+="-\n"
+info+=os.popen("df -h").read()
+info+="-\n"
+info+="----- Información sobre sus discos duros :\n\n"
+info+="-\n"
+info+=os.popen("fdisk -l").read()
 
 
 params = urllib.urlencode({'codigo_form': info, 'titulo_form': "Desde consola",'nombre_form': "nombre"})
