@@ -52,6 +52,7 @@ div#content_left{width:160px;float:left;padding:10px 10px;}
 }
 .paste_form{display:inline;}
 .paste_textarea{font-family:monospace;font-weight:normal;font-size:12px;line-height:16px;background-color:#F9F9F9;width:98%;height:200px;border:1px solid #ccc;padding:5px;margin:10px 0 0 0;color:#181818;}
+#id_codigo_form{font-family:monospace;font-weight:normal;font-size:12px;line-height:16px;background-color:#F9F9F9;width:98%;height:200px;border:1px solid #ccc;padding:5px;margin:10px 0 0 0;color:#181818;height:450px;}
 .abuse_textarea{background-color:#F9F9F9;width:300px;height:100px;border:1px solid #ccc;padding:5px;margin:10px 0 0 0;color:#181818;}
 #code_frame{font-size:12px;line-height:18px;}
 #code_frame li:hover{background-color:#FFD;}
@@ -97,6 +98,8 @@ div#header_search{width:250px;height:22px;padding:8px 10px 0 0;float:right;text-
 .search_input{text-transform:lowercase;background-color:#F9F9F9;width:170px;border:1px solid #ccc;padding:5px;color:#181818;font-family:trebuchet MS,Lucida Sans Unicode, Lucida Sans, Sans-Serif;}
 .search_button{vertical-align:top;padding:0;margin:0 0 0 4px;width:30px;height:30px;background:url(/i/sprite_png_v3.png) 0 -79px no-repeat;}
 input.post_input, select.post_select{font-family:trebuchet MS,Lucida Sans Unicode, Lucida Sans, Sans-Serif;background-color:#F9F9F9;width:240px;border:1px solid #ccc;padding:5px;color:#181818;font-size:1.0em;}
+#id_titulo_form{font-family:trebuchet MS,Lucida Sans Unicode, Lucida Sans, Sans-Serif;background-color:#F9F9F9;width:240px;border:1px solid #ccc;padding:5px;color:#181818;font-size:1.0em;}
+#id_nombre_form{font-family:trebuchet MS,Lucida Sans Unicode, Lucida Sans, Sans-Serif;background-color:#F9F9F9;width:240px;border:1px solid #ccc;padding:5px;color:#181818;font-size:1.0em;}
 input.post_input{width:228px;}
 table.diff{background:white;}
 table.diff td{text-align:right;padding-left:3px;padding-right:3px;}
