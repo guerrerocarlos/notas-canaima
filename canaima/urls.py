@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     # to INSTALLED_APPS to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
+    (r'^captcha/', include('captcha.urls')),
     (r'^1_archivos/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/var/www/data/1_archivos'}),
     (r'^data/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/var/www/data/'}),
 
@@ -31,4 +32,5 @@ urlpatterns = patterns('',
     (r'^archivo', mostrar_archivo),
     (r'^ayuda', mostrar_ayuda),
     (r'^', bienvenido),
+
 )

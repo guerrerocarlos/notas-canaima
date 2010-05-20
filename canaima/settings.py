@@ -79,4 +79,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'canaima.notas',
+    'captcha',
 )
+
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.random_char_challenge'
+
+CAPTCHA_NOISE_FUNCTIONS = ''
+
