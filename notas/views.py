@@ -60,28 +60,40 @@ def enviar_consola(request):
 
 
 def enviar(request):
-    errors = []
-
+    form = formulario_principal(request.POST)
     fp=formulario_principal()
-    notas_recientes = Nota.objects.order_by('-fecha')[0:7]
-    if 'codigo_form' in request.POST:
-        codigo_form = request.POST['codigo_form']
-        titulo_form = request.POST['titulo_form']
-        autor_form = request.POST['nombre_form']
-	if ( autor_form!="") :
-		a1=Autor(name=autor_form)
-	else :
-		a1=Autor(name="Anónimo")
-	a1.save()
+    if (form.is_valid()):
 
-	if ( titulo_form==""):
-        	p1 = Nota(nota=codigo_form,titulo="Sin Título",autor=a1)
-	else:
-        	p1 = Nota(nota=codigo_form,titulo=titulo_form,autor=a1)
-	p1.save()
-    	return render_to_response('1.html',{'exito':True,'id':p1.id,'notas_recientes':notas_recientes,'formulario_principal':fp})
-    return render_to_response('1.html',{'errors': errors,'exito':True,'notas_recientes':notas_recientes,'formulario_principal':fp})
-    
+	    errors = []
+	    notas_recientes = Nota.objects.order_by('-fecha')[0:7]
+	    fp=formulario_principal()
+	    if 'codigo_form' in request.POST:
+	        codigo_form = request.POST['codigo_form']
+	        titulo_form = request.POST['titulo_form']
+	        autor_form = request.POST['nombre_form']
+		if ( autor_form!="") :
+			a1=Autor(name=autor_form)
+		else :
+			a1=Autor(name="Anónimo")
+		a1.save()
+	
+		if ( titulo_form==""):
+	        	p1 = Nota(nota=codigo_form,titulo="Sin Título",autor=a1)
+		else:
+	        	p1 = Nota(nota=codigo_form,titulo=titulo_form,autor=a1)
+		p1.save()
+	    	return render_to_response('1.html',{'exito':True,'id':p1.id,'notas_recientes':notas_recientes,'formulario_principal':fp})
+	    return render_to_response('1.html',{'errors': errors,'exito':True,'notas_recientes':notas_recientes,'formulario_principal':fp})
+    else:
+
+	notas_recientes = Nota.objects.order_by('-fecha')[0:7]
+	errors=formulario_principal(form)
+	return render_to_response('1.html',{'errors': "Error en la informacion del formulario",'exito':False,'notas_recientes':notas_recientes,'formulario_principal':fp})
+
+
+   
+
+ 
 
 def ver(request,num ):
 
