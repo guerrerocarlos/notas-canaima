@@ -15,9 +15,9 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    (r'^1_archivos/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/home/guerrerocarlos/www.tecnoguardian.com/data/1_archivos'}),
-    (r'^data/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/home/guerrerocarlos/www.tecnoguardian.com/data/'}),
+    (r'^captcha/', include('captcha.urls')),
+    (r'^1_archivos/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/home/cguerrero/notas/data/1_archivos'}),
+    (r'^data/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/home/cguerrero/notas/data/'}),
 
     # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
